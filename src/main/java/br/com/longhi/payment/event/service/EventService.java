@@ -42,8 +42,8 @@ public class EventService {
     }
 
     private ResponseEvent handleTransfer(TransferRequestEvent event) {
-        Account origin = findAccountById(event.getOrigin());
-        Account destination = findAccountById(event.getDestination());
+        var origin = findAccountById(event.getOrigin());
+        var destination = findAccountById(event.getDestination());
 
         origin.setBalance(origin.getBalance() - event.getAmount());
         destination.setBalance(destination.getBalance() + event.getAmount());
@@ -52,7 +52,7 @@ public class EventService {
     }
 
     private ResponseEvent handleWithdraw(WithdrawRequestEvent event) {
-        Account account = findAccountById(event.getOrigin());
+        var account = findAccountById(event.getOrigin());
         account.setBalance(account.getBalance() - event.getAmount());
         return new WithdrawResponseEvent(account);
     }
